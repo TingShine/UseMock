@@ -1,0 +1,3 @@
+[submodule "src/main/network"]
+	path = src/main/network
+	url = https://github.com/TingShine/mock_nest_server.git

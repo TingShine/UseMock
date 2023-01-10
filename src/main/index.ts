@@ -1,5 +1,6 @@
 import { app } from 'electron'
 import { createEinf } from 'einf'
+import { nestBootstrap } from './network'
 import { AppController } from './app.controller'
 import { createWindow } from './main.window'
 
@@ -30,6 +31,8 @@ async function electronAppInit() {
 async function bootstrap() {
   try {
     await electronAppInit()
+
+    await nestBootstrap()
 
     await createEinf({
       window: createWindow,
