@@ -1,8 +1,10 @@
-import type { IpcRenderer } from 'electron'
-
 declare global {
   interface Window {
-    ipcRenderer: IpcRenderer
+    ipcRenderer: {
+      getSystemDarkMode: () => 'light' | 'dark',
+      sendNotification: (title: string, body: string) => void,
+      removeEventListener: () => void
+    }
   }
 }
 
