@@ -1,7 +1,7 @@
 import { app } from 'electron'
 import { createEinf } from 'einf'
-import { nestBootstrap } from './network'
-import { AppController } from './app.controller'
+// import { nestBootstrap } from './network'
+import { AppController } from './ipc/app.controller'
 import { createWindow } from './main.window'
 
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true'
@@ -32,7 +32,7 @@ async function bootstrap() {
   try {
     await electronAppInit()
 
-    await nestBootstrap()
+    // await nestBootstrap()
 
     await createEinf({
       window: createWindow,
