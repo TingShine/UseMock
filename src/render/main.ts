@@ -2,6 +2,7 @@ import type { Component } from 'vue'
 import { createApp } from 'vue'
 import Tdesign from 'tdesign-vue-next'
 import router from '@render/router'
+import { createPinia } from 'pinia'
 import App from './App.vue'
 
 import '@render/assets/main.css'
@@ -9,6 +10,9 @@ import 'tdesign-vue-next/es/style/index.css'
 import 'vue-draggable-tree-next/style.css'
 
 const app = createApp(App).use(router)
+
+const pinia = createPinia()
+app.use(pinia)
 
 // 全局注册组件
 const components = import.meta.glob('./components/**/index.vue', { eager: true })

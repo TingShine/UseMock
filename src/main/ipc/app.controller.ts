@@ -1,4 +1,4 @@
-import { Controller, IpcHandle, IpcOn } from 'einf'
+import { Controller, IpcHandle } from 'einf'
 import { AppService } from './app.service'
 
 @Controller()
@@ -7,7 +7,7 @@ export class AppController {
     private appService: AppService,
   ) { }
 
-  @IpcOn('system:dark-mode')
+  @IpcHandle('system:dark-mode')
   public getSystemDarkMode(): boolean {
     return this.appService.getDarkMode()
   }

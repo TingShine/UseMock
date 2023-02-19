@@ -1,13 +1,26 @@
 const { ipcRenderer } = window
-interface IElectronAPI {
 
+const wrapIpcFunc = (func) => {
+  return async function (): Promise<any> {
+    const { data, error } = await func()
+
+    if (error)
+      throw new Error(error.toString())
+
+    return data
+  }
 }
 
-export const electronAPI: IElectronAPI = {
-  getSystemDarkMode: ipcRenderer.getSystemDarkMode,
-  sendNotification: ipcRenderer.sendNotification,
+const apis = ['getSystemDarkMode', 'sendNotification']
+const createElectronAPI = () => {
+  const electronAPI = {}
+  apis.forEach((key) => {
+    electronAPI[key] = wrapIpcFunc(ipcRenderer[key])
+  })
+
+  return electronAPI
 }
 
 export function useIpc() {
-  return electronAPI
+  return createElectronAPI()
 }
