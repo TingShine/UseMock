@@ -1,5 +1,9 @@
+<script lang="ts" setup>
+import ProjectCard from './components/project-card.vue'
+</script>
+
 <template>
-  <div>
-    项目
-  </div>
+  <ProjectCard title="express-mock" status="success" />
+  <ProjectCard title="express-mock" status="failure" />
+  <ProjectCard title="express-mock" status="unactive" />
 </template>
