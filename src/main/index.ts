@@ -1,4 +1,6 @@
-import { app } from 'electron'
+import { homedir } from 'os'
+import { join } from 'path'
+import { app, session } from 'electron'
 import { createEinf } from 'einf'
 // import { nestBootstrap } from './network'
 import { AppController } from './ipc/app.controller'
@@ -25,6 +27,11 @@ async function electronAppInit() {
         app.exit()
       })
     }
+
+    const vueuDevToolsPath = join(homedir(), '/Library/Application Support/Google/Chrome/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/6.5.0_0')
+    app.whenReady().then(async () => {
+      await session.defaultSession.loadExtension(vueuDevToolsPath)
+    })
   }
 }
 
