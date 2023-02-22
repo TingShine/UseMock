@@ -5,11 +5,13 @@ import { Notification, nativeTheme } from 'electron'
 export class AppService {
   /** 获取暗黑模式 */
   public getDarkMode(): boolean {
+    console.log(nativeTheme.shouldUseDarkColors)
     return nativeTheme.shouldUseDarkColors
   }
 
-  public getTheme(): string {
-    return nativeTheme.themeSource
+  public toggleThemeSource(mode: 'system' | 'dark' | 'light'): 'light' | 'dark' {
+    nativeTheme.themeSource = mode
+    return nativeTheme.shouldUseDarkColors ? 'dark' : 'light'
   }
 
   /** 发送系统通知 */

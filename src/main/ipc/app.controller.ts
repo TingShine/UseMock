@@ -12,6 +12,14 @@ export class AppController {
     return this.appService.getDarkMode()
   }
 
+  @IpcHandle('toggle:dark-mode')
+  public toggleSystemDarkMode(mode: 'light' | 'dark' | 'system') {
+    if (!['light', 'dark', 'system'].includes(mode))
+      return new Error('Invalid parameter')
+
+    return this.appService.toggleThemeSource(mode)
+  }
+
   @IpcHandle('system:notification')
   public publishNotification(title: string, body: string) {
     this.appService.sendSystemNotification(title, body)
