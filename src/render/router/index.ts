@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { setInterceptor } from './interceptor'
 
-const routes: RouteRecordRaw[] = [
+export const routes: RouteRecordRaw[] = [
   {
     path: '/',
     redirect: '/dashboard',
@@ -12,8 +12,18 @@ const routes: RouteRecordRaw[] = [
     name: 'Dashboard',
     meta: {
       title: '控制台',
+      icon: 'dashboard',
     },
     component: () => import('../views/dashboard/index.vue'),
+  },
+  {
+    path: '/project',
+    name: 'Project',
+    meta: {
+      title: '项目',
+      icon: 'layers',
+    },
+    component: () => import('../views/project/index.vue'),
   },
 ]
 
