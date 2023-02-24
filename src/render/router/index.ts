@@ -5,7 +5,7 @@ import { setInterceptor } from './interceptor'
 export const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/dashboard',
+    redirect: '/project',
   },
   {
     path: '/dashboard',
