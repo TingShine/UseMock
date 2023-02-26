@@ -1,3 +1,4 @@
+import { ProjectService } from '@main/network/project/project.servvice'
 import { Controller, IpcHandle } from 'einf'
 import { AppService } from './app.service'
 
@@ -5,6 +6,7 @@ import { AppService } from './app.service'
 export class AppController {
   constructor(
     private appService: AppService,
+    private projectService: ProjectService,
   ) { }
 
   @IpcHandle('system:dark-mode')
@@ -23,5 +25,15 @@ export class AppController {
   @IpcHandle('system:notification')
   public publishNotification(title: string, body: string) {
     this.appService.sendSystemNotification(title, body)
+  }
+
+  @IpcHandle('project:create')
+  public async createProject(project) {
+    return await this.projectService.createOneProject(project)
+  }
+
+  @IpcHandle('project:fetch')
+  public async getProject() {
+    return await this.projectService.getAllProjects()
   }
 }

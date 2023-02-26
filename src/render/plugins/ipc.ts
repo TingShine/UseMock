@@ -1,4 +1,5 @@
 import type { IpcResponse } from '@common/types'
+import { MessagePlugin } from 'tdesign-vue-next'
 const { ipcRenderer } = window
 
 type IpcFunction<T> = (...args: any[]) => void | T | Promise<IpcResponse<T>>
@@ -8,14 +9,16 @@ const wrapIpcFunc = (func: IpcFunction<any>) => {
     const result: IpcResponse<any> = await func(...args)
     const { data, error } = result
 
-    if (error)
+    if (error) {
+      MessagePlugin.error(error.toString())
       throw new Error(error.toString())
+    }
 
     return data
   }
 }
 
-const apis = ['getSystemDarkMode', 'sendNotification', 'toggleSystemDarkMode'] as const
+const apis = ['getSystemDarkMode', 'sendNotification', 'toggleSystemDarkMode', 'createProject', 'getAllProjects'] as const
 const createElectronAPI = (): { [K in typeof apis[number]]?: IpcFunction<any> } => {
   const electronAPI = {}
   apis.forEach((key) => {

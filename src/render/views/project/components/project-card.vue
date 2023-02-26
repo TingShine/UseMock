@@ -36,14 +36,14 @@ const handleOperation = (item) => {
 
 <template>
   <global-card class="w-80 p-0 pt-6 mb-8 hover:scale-105">
-    <div class="flex justify-between px-4">
-      <div class="font-bold text-xl">
+    <div class="flex justify-between  flex-grow-0 px-4">
+      <div class="font-bold text-xl flex-shrink">
         {{ title }}
-        <p class="text-sm text-gray-300 font-sans font-medium">
+        <p class="text-sm text-gray-300 font-sans font-medium overflow-clip text-ellipsis">
           {{ projectId }}
         </p>
       </div>
-      <div>
+      <div class="flex-initial">
         <t-button v-if="status !== 'success'" shape="circle" variant="text" size="large" class="hover:text-green-500">
           <template #icon>
             <t-icon name="play-circle-filled" size="large" />

@@ -9,10 +9,13 @@ export const useMenu = () => {
   const router = useRouter()
 
   const convertRoute2Menu = (routes: RouteRecordRaw[]) => {
-    return routes.filter(route => !route.redirect).map((route) => {
+    return routes.filter(route => (!route.redirect && !route.meta?.ignoreMenu)).map((route) => {
       const menu: any = { name: route.name, path: route.path, title: route.meta?.title || '', icon: route.meta?.icon || '' }
       if (route.children && route.children.length)
         menu.children = convertRoute2Menu(route.children)
+
+      if (!menu.children?.length)
+        return { ...menu, children: undefined }
 
       return menu
     })

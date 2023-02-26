@@ -1,6 +1,14 @@
 <script lang="ts" setup>
 import { AddIcon } from 'tdesign-icons-vue-next'
+import { onMounted } from 'vue'
 import ProjectCard from './components/project-card.vue'
+import { useProject } from '.'
+
+const { handleJumpCreate, getProjects, formData } = useProject()
+
+onMounted(() => {
+  getProjects()
+})
 </script>
 
 <template>
@@ -12,21 +20,16 @@ import ProjectCard from './components/project-card.vue'
     <div class="flex justify-end">
       <div class="flex items-end w-1/3">
         <t-input class="mr-4" />
-        <t-button theme="success">
+        <t-button theme="success" @click="handleJumpCreate">
           <template #icon>
-            <AddIcon />
+            <AddIcon size="large" />
           </template>
           新建
         </t-button>
       </div>
     </div>
     <div class="flex flex-wrap justify-between mt-8">
-      <ProjectCard title="express-mock" status="success" />
-      <ProjectCard title="express-mock" status="failure" />
-      <ProjectCard title="express-mock" status="unactive" />
-      <ProjectCard title="express-mock" status="unactive" />
-      <ProjectCard title="express-mock" status="unactive" />
-      <ProjectCard title="express-mock" status="unactive" />
+      <ProjectCard v-for="project in formData.projects" :key="project.id" :title="project.name" :status="project.status" :project-id="project.id" />
     </div>
   </div>
 </template>

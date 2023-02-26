@@ -25,6 +25,15 @@ export const routes: RouteRecordRaw[] = [
     },
     component: () => import('../views/project/index.vue'),
   },
+  {
+    path: '/project/create',
+    name: 'ProjectCreate',
+    meta: {
+      title: '项目创建',
+      ignoreMenu: true,
+    },
+    component: () => import('../views/project/create/index.vue'),
+  },
 ]
 
 const router = createRouter({
