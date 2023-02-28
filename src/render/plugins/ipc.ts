@@ -18,7 +18,7 @@ const wrapIpcFunc = (func: IpcFunction<any>) => {
   }
 }
 
-const apis = ['getSystemDarkMode', 'sendNotification', 'toggleSystemDarkMode', 'createProject', 'getAllProjects'] as const
+const apis = ['getSystemDarkMode', 'sendNotification', 'toggleSystemDarkMode', 'createProject', 'getProjects'] as const
 const createElectronAPI = (): { [K in typeof apis[number]]?: IpcFunction<any> } => {
   const electronAPI = {}
   apis.forEach((key) => {

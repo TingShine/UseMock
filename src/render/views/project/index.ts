@@ -12,6 +12,7 @@ export const useProject = () => {
     pagination: {
       pageSize: 5,
       current: 1,
+      total: 0,
     },
   })
 
@@ -20,8 +21,14 @@ export const useProject = () => {
   }
 
   const getProjects = async () => {
-    const projects = await electronAPI.getAllProjects()
-    formData.projects = projects
+    const params = {
+      name: formData.search,
+      pageSize: formData.pagination.pageSize,
+      page: formData.pagination.current,
+    }
+    const { total, data } = await electronAPI.getProjects(params)
+    formData.projects = data
+    formData.pagination.total = total
   }
 
   return {

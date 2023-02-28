@@ -8,6 +8,7 @@ import App from './App.vue'
 import '@render/assets/main.css'
 import 'tdesign-vue-next/es/style/index.css'
 import 'vue-draggable-tree-next/style.css'
+import 'nprogress/nprogress.css'
 
 const app = createApp(App).use(router)
 

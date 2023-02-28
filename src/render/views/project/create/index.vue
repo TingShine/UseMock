@@ -36,6 +36,10 @@ const handleSubmit = async (result: SubmitContext) => {
     router.replace({ name: 'Project' })
   }
 }
+
+const handleCancel = () => {
+  router.replace({ name: 'Project' })
+}
 </script>
 
 <template>
@@ -61,7 +65,7 @@ const handleSubmit = async (result: SubmitContext) => {
           <t-button class="mr-4" type="submit">
             确定
           </t-button>
-          <t-button theme="default" variant="outline">
+          <t-button theme="default" variant="outline" @click="handleCancel">
             取消
           </t-button>
         </t-form-item>

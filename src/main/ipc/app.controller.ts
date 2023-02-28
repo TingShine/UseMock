@@ -1,3 +1,5 @@
+import type { ICreateProjectParams, ISearchProjectParams } from '@common/types'
+import { DatabaseService } from '@main/database/database.service'
 import { ProjectService } from '@main/network/project/project.servvice'
 import { Controller, IpcHandle } from 'einf'
 import { AppService } from './app.service'
@@ -7,6 +9,7 @@ export class AppController {
   constructor(
     private appService: AppService,
     private projectService: ProjectService,
+    private database: DatabaseService,
   ) { }
 
   @IpcHandle('system:dark-mode')
@@ -28,12 +31,12 @@ export class AppController {
   }
 
   @IpcHandle('project:create')
-  public async createProject(project) {
-    return await this.projectService.createOneProject(project)
+  public async createProject(project: ICreateProjectParams) {
+    return await this.database.createProject(project)
   }
 
   @IpcHandle('project:fetch')
-  public async getProject() {
-    return await this.projectService.getAllProjects()
+  public async getProject(params?: ISearchProjectParams) {
+    return await this.database.findProjects(params || {})
   }
 }
