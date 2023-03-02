@@ -5,7 +5,7 @@ import { ProjectEntity as Project } from './project.entity'
 @Entity('api')
 export class ApiEntity {
   @PrimaryGeneratedColumn('uuid')
-  id: number
+  id: string
 
   @Column('boolean', { default: true })
   isActive: boolean

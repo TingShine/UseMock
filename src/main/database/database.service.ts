@@ -67,4 +67,20 @@ export class DatabaseService {
 
     return await this.projectRepository.save(project)
   }
+
+  /** 改变项目状态 */
+  async changeProjectStatus(uid: string) {
+    const project = await this.projectRepository.findOneBy({ id: uid })
+
+    const statusMap = {
+      success: 'unactive',
+      unactive: 'success',
+      failure: 'success',
+    }
+
+    project.status = statusMap[project.status]
+    await this.projectRepository.save(project)
+
+    return project
+  }
 }

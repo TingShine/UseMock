@@ -4,7 +4,7 @@ import { onMounted } from 'vue'
 import ProjectCard from './components/project-card.vue'
 import { useProject } from '.'
 
-const { handleJumpCreate, getProjects, formData } = useProject()
+const { handleJumpCreate, getProjects, handleStatusChange, formData } = useProject()
 
 onMounted(() => {
   getProjects()
@@ -29,7 +29,7 @@ onMounted(() => {
       </div>
     </div>
     <div class="flex flex-wrap justify-between mt-8">
-      <ProjectCard v-for="project in formData.projects" :key="project.id" :title="project.name" :status="project.status" :project-id="project.id" />
+      <ProjectCard v-for="(project, index) in formData.projects" :key="project.id" :title="project.name" :status="project.status" :description="project.description" :project-id="project.id" @status-change="handleStatusChange(index)" />
     </div>
   </div>
 </template>

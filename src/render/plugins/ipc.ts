@@ -14,11 +14,13 @@ const wrapIpcFunc = (func: IpcFunction<any>) => {
       throw new Error(error.toString())
     }
 
+    // console.log(data);
+
     return data
   }
 }
 
-const apis = ['getSystemDarkMode', 'sendNotification', 'toggleSystemDarkMode', 'createProject', 'getProjects'] as const
+const apis = ['getSystemDarkMode', 'sendNotification', 'toggleSystemDarkMode', 'createProject', 'getProjects', 'changeProjectStatus'] as const
 const createElectronAPI = (): { [K in typeof apis[number]]?: IpcFunction<any> } => {
   const electronAPI = {}
   apis.forEach((key) => {

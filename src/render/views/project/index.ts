@@ -31,9 +31,16 @@ export const useProject = () => {
     formData.pagination.total = total
   }
 
+  const handleStatusChange = async (index: number) => {
+    const id = formData.projects[index].id
+    const project = await electronAPI.changeProjectStatus(id)
+    formData.projects[index] = project
+  }
+
   return {
     formData,
     handleJumpCreate,
     getProjects,
+    handleStatusChange,
   }
 }

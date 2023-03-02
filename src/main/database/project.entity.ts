@@ -4,7 +4,7 @@ import { ApiEntity as Api } from './api.entity'
 @Entity('project')
 export class ProjectEntity {
   @PrimaryGeneratedColumn('uuid')
-  id: number
+  id: string
 
   @Column({ type: 'text', length: 32 })
   name: string

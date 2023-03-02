@@ -4,7 +4,7 @@ import { ApiEntity as Api } from './api.entity'
 @Entity('log')
 export class LogEntity {
   @PrimaryGeneratedColumn('uuid')
-  id: number
+  id: string
 
   @ManyToOne(() => Api, api => api.logs)
   api: Api

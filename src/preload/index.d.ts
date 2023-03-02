@@ -6,6 +6,7 @@ declare global {
     ipcRenderer: {
       getProjects: (params?: ISearchProjectParams) => Promise<wrapList<IProject>>
       createProject: (params: ICreateProjectParams) => Promise<IProject>,
+      changeProjectStatus: (id: string) =>Promise<IProject>,
       toggleSystemDarkMode: (mode: 'ststem' | 'dark' | 'light') => 'dark' | 'light',
       getSystemDarkMode: () => 'light' | 'dark',
       sendNotification: (title: string, body: string) => void,

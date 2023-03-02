@@ -39,4 +39,9 @@ export class AppController {
   public async getProject(params?: ISearchProjectParams) {
     return await this.database.findProjects(params || {})
   }
+
+  @IpcHandle('project:change-status')
+  public async changeProjectStatus(id: string) {
+    return await this.database.changeProjectStatus(id)
+  }
 }
